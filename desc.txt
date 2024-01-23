@@ -1,0 +1,7 @@
+Colour codes:
+- Background & Inner panel visual boxes (Right hand side) #212529
+- Side Panels - #272b2f
+- Inside Panels - #212529
+- Supernova - #FBCB07
+- Red - #E2241C
+- Cobalt - #0654BA
