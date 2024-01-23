@@ -4,7 +4,7 @@ USE DWH_SRI_Recaudacion
 -- Dim_Fecha
 CREATE TABLE Dim_Fecha (
     FechaID INT IDENTITY(1,1) NOT NULL,
-    Año INT,
+    Anio INT,
     Mes INT,
 	Dia INT,
     MesLabel NVARCHAR(32),
