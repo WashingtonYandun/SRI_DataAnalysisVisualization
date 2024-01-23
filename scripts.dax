@@ -9,7 +9,6 @@ IF(
     (Recaudacion_Actual - Recaudacion_Anterior) / Recaudacion_Anterior
 )
 
-
 // ****************************************************************************************************************
 Recaudacion_Total = SUM(Hecho_Recaudacion[Valor_Recaudado])
 
@@ -20,9 +19,33 @@ DIVIDE(
 )
 
 // ****************************************************************************************************************
+Recaudacion_Por_Provincia = 
+SUMX(
+    RELATEDTABLE(Hecho_Recaudacion),
+    Hecho_Recaudacion[Valor_Recaudado]
+)
 
+Disparidad_Recaudacion_Provincial = 
+STDEV.P(Hecho_Recaudacion[Valor_Recaudado])
 
 // ****************************************************************************************************************
+Recaudacion_Por_Tipo_Contribuyente = 
+SUMX(
+    RELATEDTABLE(Hecho_Recaudacion),
+    Hecho_Recaudacion[Valor_Recaudado]
+)
 
+Total_Contribuyentes_Por_Tipo = 
+CALCULATE(
+    DISTINCTCOUNT(Hecho_Recaudacion[ContribuyenteID]),
+    REMOVEFILTERS(Dim_Contribuyente)
+)
+
+
+Eficiencia_Recaudacion_Por_Tipo_Contribuyente = 
+DIVIDE(
+    [Recaudacion_Por_Tipo_Contribuyente],
+    [Total_Contribuyentes_Por_Tipo]
+)
 
 // ****************************************************************************************************************
