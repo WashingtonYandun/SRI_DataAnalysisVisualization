@@ -1,0 +1,28 @@
+TasaCrecimientoAnual = 
+VAR AnioActual = MAX(Dim_Fecha[Año])  // Obtiene el año actual del contexto
+VAR Recaudacion_Actual = CALCULATE(SUM(Hecho_Recaudacion[Valor_Recaudado]), Dim_Fecha[Año] = AnioActual)
+VAR Recaudacion_Anterior = CALCULATE(SUM(Hecho_Recaudacion[Valor_Recaudado]), Dim_Fecha[Año] = AnioActual - 1)
+RETURN
+IF(
+    Recaudacion_Anterior = 0, 
+    0,  // Registra 0 si no hay datos para el año anterior
+    (Recaudacion_Actual - Recaudacion_Anterior) / Recaudacion_Anterior
+)
+
+
+// ****************************************************************************************************************
+Recaudacion_Total = SUM(Hecho_Recaudacion[Valor_Recaudado])
+
+Porcentaje_Contribucion_Tipo_Impuesto = 
+DIVIDE(
+    SUM(Hecho_Recaudacion[Valor_Recaudado]), 
+    CALCULATE([Recaudacion_Total], ALL(Dim_Impuesto))
+)
+
+// ****************************************************************************************************************
+
+
+// ****************************************************************************************************************
+
+
+// ****************************************************************************************************************
